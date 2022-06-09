@@ -1,0 +1,12 @@
+{
+  "domain": "rgb_ir_light",
+  "name": "rgb ir light",
+  "documentation": "https://github.com/betogontijo/homeassistant-rgb-ir-light",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/betogontijo/homeassistant-rgb-ir-light/issues",
+  "version": "0.0.0",
+  "config_flow": true,
+  "codeowners": [
+    "@betogontijo"
+  ]
+}
