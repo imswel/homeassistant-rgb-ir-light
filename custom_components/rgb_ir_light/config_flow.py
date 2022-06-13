@@ -37,7 +37,7 @@ class BlueprintFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             )
             if valid is not True:
                 self._errors["base"] = "auth"
-            return self.async_create_entry(title="RGB IR Light", data=user_input)
+            return self.async_create_entry(title=user_input[CONF_NAME], data=user_input)
 
         user_input = {}
         # Provide defaults for form

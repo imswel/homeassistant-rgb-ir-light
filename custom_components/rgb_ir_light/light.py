@@ -9,7 +9,7 @@ from homeassistant.components.light import (
     ColorMode,
 )
 
-from .const import CONF_NAME, DOMAIN, ICON, VERSION, ATTRIBUTION, NAME, LIGHT
+from .const import CONF_NAME, DOMAIN, ICON, VERSION, ATTRIBUTION, LIGHT
 
 color_points = {
     "RED": [360.0, 100.0],
@@ -61,9 +61,9 @@ class RGBLight(LightEntity, CoordinatorEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, self.unique_id)},
-            "name": NAME,
+            "name": self._name,
             "model": VERSION,
-            "manufacturer": NAME,
+            "manufacturer": self._name,
         }
 
     @property

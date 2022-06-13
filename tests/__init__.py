@@ -1,1 +1,1 @@
-"""Tests for integration_blueprint integration."""
+"""Tests for rgb_ir_light integration."""
