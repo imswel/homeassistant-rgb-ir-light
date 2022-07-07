@@ -126,33 +126,39 @@ class RGBLight(LightEntity, CoordinatorEntity):
         return not last_refresh_success
 
     async def _set_state(self, power_on, brightness=None, hs=None):
-        if hs is not None:
+        if self.is_on and power_on is False:
             await self.coordinator.api.async_set_color(
-                list(color_points.keys())[closest_node(hs)]
+                "OFF"
             )
+            return
         else:
-            await self.coordinator.api.async_set_color(
-                "ON" if power_on is True else "OFF"
-            )
-        if brightness is not None:
-            brightness = brightness - 3
-            brightness_diff = brightness - (
-                self._requested_brightness
-                if self._requested_brightness is not None
-                else 0
-            )
-            hops = int(abs(brightness_diff / self._brightness_hops))
-            if brightness_diff > 0:
-                await self.coordinator.api.async_set_brightness(
-                    "BRIGHTNESS_UP", hops if hops < 5 else hops * 2
+            if not self.is_on and power_on is True:
+                await self.coordinator.api.async_set_color(
+                    "ON"
                 )
-            else:
-                await self.coordinator.api.async_set_brightness(
-                    "BRIGHTNESS_DOWN", hops if hops < 5 else hops * 2
+            if hs is not None and self.hs_color != hs:
+                await self.coordinator.api.async_set_color(
+                    list(color_points.keys())[closest_node(hs)]
                 )
-            self._requested_brightness = (brightness - brightness_diff) + (
-                int(brightness_diff / self._brightness_hops) * self._brightness_hops
-            )
+            if brightness is not None and brightness != self.brightness:
+                brightness = brightness - 3
+                brightness_diff = brightness - (
+                    self._requested_brightness
+                    if self._requested_brightness is not None
+                    else 0
+                )
+                hops = int(abs(brightness_diff / self._brightness_hops))
+                if brightness_diff > 0:
+                    await self.coordinator.api.async_set_brightness(
+                        "BRIGHTNESS_UP", hops if hops < 5 else hops * 2
+                    )
+                else:
+                    await self.coordinator.api.async_set_brightness(
+                        "BRIGHTNESS_DOWN", hops if hops < 5 else hops * 2
+                    )
+                self._requested_brightness = (brightness - brightness_diff) + (
+                    int(brightness_diff / self._brightness_hops) * self._brightness_hops
+                )
         self._requested_power = power_on
         self._requested_hs = hs if hs is not None else color_points.get("WHITE")
         self._requested_state_at = datetime.datetime.now(datetime.timezone.utc)
