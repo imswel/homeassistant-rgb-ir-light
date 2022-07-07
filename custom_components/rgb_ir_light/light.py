@@ -130,7 +130,6 @@ class RGBLight(LightEntity, CoordinatorEntity):
             await self.coordinator.api.async_set_color(
                 "OFF"
             )
-            return
         else:
             if not self.is_on and power_on is True:
                 await self.coordinator.api.async_set_color(
