@@ -1,3 +1,5 @@
+# homeassistant-rgb-ir-light
+
 This repo is written in Python and is made to be used as a HACS repository in Home Assitant
 
 ## Why?
