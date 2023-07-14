@@ -27,10 +27,6 @@ class BlueprintFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         """Handle a flow initialized by the user."""
         self._errors = {}
 
-        # Uncomment the next 2 lines if only a single instance of the integration is allowed:
-        # if self._async_current_entries():
-        #     return self.async_abort(reason="single_instance_allowed")
-
         if user_input is not None:
             valid = await self._test_credentials(
                 user_input[CONF_ENTITY_ID], user_input[CONF_DEVICE]
@@ -71,7 +67,7 @@ class BlueprintFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     async def _test_credentials(self, entity_id, device):
         """Return true if credentials is valid."""
         try:
-            client = IntegrationBlueprintApiClient(entity_id, device, self.hass)
+            IntegrationBlueprintApiClient(entity_id, device, self.hass)
             return True
         except Exception:  # pylint: disable=broad-except
             pass

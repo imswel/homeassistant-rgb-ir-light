@@ -9,7 +9,7 @@ from homeassistant.components.light import (
     ColorMode,
 )
 
-from .const import CONF_NAME, DOMAIN, ICON, VERSION, ATTRIBUTION, LIGHT
+from .const import CONF_NAME, DOMAIN, ICON, VERSION, ATTRIBUTION
 
 color_points = {
     "RED": [360.0, 100.0],

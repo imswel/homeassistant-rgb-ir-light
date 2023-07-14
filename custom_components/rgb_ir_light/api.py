@@ -1,10 +1,6 @@
 """Sample API Client."""
 import logging
-import asyncio
-import socket
-from typing import Optional
-import aiohttp
-import async_timeout
+
 from homeassistant.core import HomeAssistant
 
 TIMEOUT = 10
@@ -35,7 +31,6 @@ class IntegrationBlueprintApiClient:
             {"device": self._device, "command": value},
             True,
             None,
-            None,
             {"entity_id": self._entity_id},
         )
 
@@ -52,7 +47,6 @@ class IntegrationBlueprintApiClient:
                 # "hold_secs": 0.5,
             },
             True,
-            None,
             None,
             {"entity_id": self._entity_id},
         )

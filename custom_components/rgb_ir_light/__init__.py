@@ -4,24 +4,20 @@ Custom integration to integrate integration_blueprint with Home Assistant.
 For more details about this integration, please refer to
 https://github.com/custom-components/integration_blueprint
 """
-import asyncio
 from datetime import timedelta
 import logging
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import Config, HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import IntegrationBlueprintApiClient
 
 from .const import (
-    CONF_NAME,
     CONF_ENTITY_ID,
     CONF_DEVICE,
     DOMAIN,
-    PLATFORMS,
     STARTUP_MESSAGE,
 )
 
@@ -82,7 +78,7 @@ class BlueprintDataUpdateCoordinator(DataUpdateCoordinator):
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Handle removal of an entry."""
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    hass.data[DOMAIN][entry.entry_id]
     unloaded = await hass.config_entries.async_forward_entry_unload(entry, "light")
     if unloaded:
         hass.data[DOMAIN].pop(entry.entry_id)
