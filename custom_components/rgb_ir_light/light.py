@@ -12,11 +12,22 @@ from homeassistant.components.light import (
 from .const import CONF_NAME, DOMAIN, ICON, VERSION, ATTRIBUTION
 
 color_points = {
-    "RED": [360.0, 100.0],
-    "GREEN": [120.0, 100.0],
-    "BLUE": [240.0, 100.0],
     "WHITE": [0.0, 0.0],
-    "CYAN": [180.0, 100.0]
+    "RED": [360.0, 100.0],
+    "ORANGERED": [20.0, 100.0],
+    "ORANGE": [40.0, 100.0],
+    "YELLOW": [60.0, 100.0],
+    "GREENYELLOW": [80.0, 100.0],
+    "GREEN": [120.0, 100.0],
+    "MINTY": [140.0, 100.0],
+    "TEAL": [160.0, 100.0],
+    "CYAN": [180.0, 100.0],
+    "SKYBLUE": [200.0, 100.0],
+    "BLUE": [240.0, 100.0],
+    "INDIGO": [260.0, 100.0],
+    "LAVENDA": [270.0, 100.0],
+    "PURPLE": [280.0, 100.0],
+    "MAGENTA": [300.0, 100.0]
 }
 nodes = np.asarray(list(color_points.values()))
 
