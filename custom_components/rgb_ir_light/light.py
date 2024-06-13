@@ -16,6 +16,7 @@ color_points = {
     "GREEN": [120.0, 100.0],
     "BLUE": [240.0, 100.0],
     "WHITE": [0.0, 0.0],
+    "CYAN": [180.0, 100.0]
 }
 nodes = np.asarray(list(color_points.values()))
 
